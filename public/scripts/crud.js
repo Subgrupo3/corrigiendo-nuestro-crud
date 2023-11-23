@@ -20,33 +20,21 @@ function showAlert() {
     //resultsElement = document.getElementById("results").innerHTML = "";
     resultsElement.innerHTML = "";
 }
-
+//Aquí modificamos las validaciones para que fuesen más legibles y simples
 function validate() {
-    
-    if (document.getElementById("inputPostNombre").value && document.getElementById("inputPostApellido").value) {
-        document.getElementById("btnPost").disabled = false;
-    }else{
-        document.getElementById("btnPost").disabled = true;
-    }
+    const postNombre = document.getElementById("inputPostNombre").value;
+    const postApellido = document.getElementById("inputPostApellido").value;
+    const putId = document.getElementById("inputPutId").value;
+    const deleteId = document.getElementById("inputDelete").value;
+    const putNombre = document.getElementById("inputPutNombre").value;
+    const putApellido = document.getElementById("inputPutApellido").value;
 
-    if (document.getElementById("inputPutId").value) {
-        document.getElementById("btnPut").disabled = false;
-    }else{
-        document.getElementById("btnPut").disabled = true;
-    }
-
-    if (document.getElementById("inputDelete").value) {
-        document.getElementById("btnDelete").disabled = false;
-    }else{
-        document.getElementById("btnDelete").disabled = true;
-    }
-
-    if (document.getElementById("inputPutNombre").value && document.getElementById("inputPutApellido").value) {
-        document.getElementById("btnSendChanges").disabled = false;
-    }else{
-        document.getElementById("btnSendChanges").disabled = true;
-    }
+    document.getElementById("btnPost").disabled = !(postNombre && postApellido);
+    document.getElementById("btnPut").disabled = !putId;
+    document.getElementById("btnDelete").disabled = !deleteId;
+    document.getElementById("btnSendChanges").disabled = !(putNombre && putApellido);
 }
+
 
 function getAll() {
     requestCRUD('GET').then((response) => response ? showDatos(response) : showAlert());
